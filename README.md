@@ -23,6 +23,19 @@ Host: 192.168.2.107
 Port: 3180
 ```
 
+## Screenshot
+
+![Autodarts Overlay Screenshot](docs/full-site-screenshot.png)
+
+Der Screenshot zeigt die Weboberfläche nach einer erfolgreichen Board-Suche und einem Verbindungstest:
+
+- Links wird das lokale Board-Profil gepflegt: Board Manager IP, Port und Polling-Intervall.
+- `Board im Netzwerk suchen` scannt das lokale private Netzwerk nach einem Board mit `connected: true`.
+- Oben zeigt die große Statusanzeige die aktuelle Phase, zum Beispiel `Wurfphase`, `Takeout` oder `Board nicht bereit`.
+- Die Statuskarten zeigen die wichtigsten Rohwerte aus `/api/state`: `connected`, `running`, `status`, `event` und `numThrows`.
+- Die Dartkarten zeigen Dart 1 bis Dart 3 inklusive Segment, Score und Koordinaten, sofern Autodarts diese Daten liefert.
+- Rechts unten bleibt die rohe JSON-Antwort sichtbar, damit unterschiedliche Autodarts-Response-Formate leichter geprüft werden können.
+
 ## Mock-Modus
 
 Ohne laufendes Autodarts Board:
