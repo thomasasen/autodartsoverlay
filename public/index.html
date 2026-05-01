@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Autodarts Overlay Prototype</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/normalize.js" defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Lokales Weboverlay</p>
+          <h1>Autodarts Overlay</h1>
+        </div>
+        <div id="phaseBanner" class="phase phase-offline" role="status" aria-live="polite">
+          <span id="phaseTitle">Board nicht bereit</span>
+          <small id="phaseDetail">Noch keine Verbindung</small>
+        </div>
+      </header>
+
+      <section class="layout">
+        <aside class="panel setup-panel" aria-label="Board Profil">
+          <div class="panel-title">
+            <h2>Board Profil</h2>
+            <span id="profileState" class="muted">Nicht gespeichert</span>
+          </div>
+
+          <form id="profileForm" class="form-grid">
+            <label>
+              <span>Board Manager IP</span>
+              <input id="hostInput" name="host" value="192.168.2.107" autocomplete="off" inputmode="numeric">
+            </label>
+            <label>
+              <span>Port</span>
+              <input id="portInput" name="port" type="number" min="1" max="65535" value="3180">
+            </label>
+            <label>
+              <span>Polling-Intervall</span>
+              <input id="pollIntervalInput" name="pollIntervalMs" type="number" min="250" max="10000" step="50" value="1000">
+            </label>
+
+            <div class="button-row">
+              <button type="submit">Speichern</button>
+              <button type="button" id="testButton" class="secondary">Verbindung testen</button>
+            </div>
+            <div class="button-row">
+              <button type="button" id="startButton" class="success">Start Polling</button>
+              <button type="button" id="stopButton" class="danger">Stop Polling</button>
+            </div>
+            <button type="button" id="discoverButton" class="secondary">Board im Netzwerk suchen</button>
+            <div id="discoverResults" class="discover-results" aria-live="polite"></div>
+            <button type="button" id="configButton" class="ghost">GET /api/config anzeigen</button>
+          </form>
+
+          <p id="formMessage" class="form-message" aria-live="polite"></p>
+        </aside>
+
+        <section class="content">
+          <div class="status-grid">
+            <article class="metric">
+              <span>connected</span>
+              <strong id="connectedValue">-</strong>
+            </article>
+            <article class="metric">
+              <span>running</span>
+              <strong id="runningValue">-</strong>
+            </article>
+            <article class="metric">
+              <span>status</span>
+              <strong id="statusValue">-</strong>
+            </article>
+            <article class="metric">
+              <span>event</span>
+              <strong id="eventValue">-</strong>
+            </article>
+            <article class="metric">
+              <span>numThrows</span>
+              <strong id="numThrowsValue">0</strong>
+            </article>
+            <article class="metric score">
+              <span>Visit Summe</span>
+              <strong id="visitScoreValue">0</strong>
+            </article>
+          </div>
+
+          <section class="dart-section" aria-label="Aktuelle Aufnahme">
+            <div class="section-heading">
+              <h2>Aktuelle Aufnahme</h2>
+              <span id="throwCountHint" class="muted">Keine Darts</span>
+            </div>
+            <div id="dartCards" class="dart-grid"></div>
+          </section>
+
+          <section class="split">
+            <article class="panel log-panel">
+              <div class="panel-title">
+                <h2>Event-Log</h2>
+                <button type="button" id="clearLogButton" class="mini">Leeren</button>
+              </div>
+              <ol id="eventLog" class="event-log"></ol>
+            </article>
+
+            <article class="panel debug-panel">
+              <details open>
+                <summary>Raw JSON Debug</summary>
+                <pre id="rawJson">{}</pre>
+              </details>
+              <details>
+                <summary>Config Discovery</summary>
+                <pre id="configJson">Noch nicht geladen.</pre>
+              </details>
+            </article>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

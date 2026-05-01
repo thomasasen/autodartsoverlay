@@ -1,0 +1,14 @@
+{
+  "name": "autodarts-overlay-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local Autodarts web overlay prototype with a plain Node.js proxy.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "mock": "node server.js --mock",
+    "test": "node --test"
+  }
+}
